@@ -1,6 +1,0 @@
-
-BSSID, First time seen, Last time seen, channel, Speed, Privacy, Cipher, Authentication, Power, # beacons, # IV, LAN IP, ID-length, ESSID, Key
-C0:56:27:71:8E:24, 2017-01-24 21:54:03, 2017-01-24 21:55:13, 11,  54, WPA2, CCMP,PSK, -37,      613,       47,   0.  0.  0.  0,  12, ABX_2.4GHz_g, 
-
-Station MAC, First time seen, Last time seen, Power, # packets, BSSID, Probed ESSIDs
-
