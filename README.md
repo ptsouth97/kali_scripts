@@ -5,18 +5,18 @@ This is a collection of common exploits associated with the popular penetration 
 ##Methods for Enabling Monitor Mode:
 
 1. airmon-ng
-airmon-ng start wlan0
+airmon-ng start wlan1
 creates a new name like wlan0mon
-airmon-ng stop wlan0
+airmon-ng stop wlan1
 doesn't work for some cards
 
 2. manual method
-ifconfig wlan0 down
+ifconfig wlan1 down
 iwconfig mode monitor
-ifconfig wlan0 up
+ifconfig wlan1 up
 
 3. airmon-ng another way
 
-ifconfig wlan0 down
+ifconfig wlan1 down
 airmon-ng check kill
-airmon-ng start wlan0
+airmon-ng start wlan1
