@@ -15,4 +15,4 @@
 bash /usr/share/mana-toolkit/run-mana/start-nat-simple.sh
 # ctrl+c stops honey pot
 
-service network-manager restart
+# service network-manager restart

