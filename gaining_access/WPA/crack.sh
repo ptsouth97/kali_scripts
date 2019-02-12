@@ -17,4 +17,4 @@ read handshake
 echo "What is the name of the wordlist file?"
 read wordlist
 
-aircrack-ng $handshake -w wordlist
+aircrack-ng $handshake -w $wordlist

@@ -2,6 +2,7 @@
 
 import subprocess as sub
 import time
+import wifi_card
 
 
 def main():
@@ -9,13 +10,8 @@ def main():
 
 	interface = input('What interface are you using? ')
 
-	# bring the network interface down
-	sub.call(['ifconfig', interface, 'down'])
-
-	# put the wifi card in monitor mode
-	sub.call(['iwconfig', interface, 'mode', 'monitor'])
-
-	# ifconfig $int up
+	# Put the wifi card into monitor mode
+	wifi_card.monitor_mode(interface)
 
 	# run airodump-ng to sniff packets
 	p = sub.Popen(['airodump-ng', interface])
@@ -24,11 +20,10 @@ def main():
 	time.sleep(5)
 
 	# Stop airodump-ng
-	p.kill()
+	sub.call(['killall', 'airodump-ng'])
 
-	# ifconfig wlan1 down		# bring the network interface down
-	# iwconfig wlan1 mode managed	# put the wifi card back into managed mode
-	# ifconfig wlan1 up		# bring the network interface back up
+	# Put the wifi card into managed mode
+	wifi_card.managed_mode(interface)
 
 
 if __name__ == '__main__':

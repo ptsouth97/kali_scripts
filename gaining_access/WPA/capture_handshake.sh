@@ -27,7 +27,7 @@ read ch
 
 airodump-ng --channel $ch --bssid $host_mac --write test-handshake wlan1
 		
-			# Can do deauth attack to disconnect/reconnect client to capture handshake
-			# wordlist -- aircrack-ng tries each word on list against handshake until it finds the WPA key 
+# Can do deauth attack to disconnect/reconnect client to capture handshake
+# wordlist -- aircrack-ng tries each word on list against handshake until it finds the WPA key 
 
  

